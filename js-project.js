@@ -34,7 +34,7 @@ function mintNFT(network, minted) {
     network = network.toString().toLowerCase();
 
     if (availableNetwork.includes(network)) {
-        const existingNFT = currrentUserNFT.find(nft => nft.network === listedNetwork[network]);
+        const existingNFT = currrentUserNFT.find(existingNetwork => existingNetwork.network === listedNetwork[network]);
 
         if (existingNFT) {
             existingNFT.minted += parseInt(minted);
@@ -72,8 +72,8 @@ function listNFTs() {
 
     // Helper function to add spacing based on the longest length
     const padText = (text, maxLength) => {
-        const str = (text || '').toString(); // Ensure the value is a string
-        return str + ' '.repeat(Math.max(0, maxLength - str.length));
+        const content = text.toString(); // Ensure the value is a string
+        return content + ' '.repeat(Math.max(0, maxLength - content.length));
     };
 
     const header = `| ${padText('Token', maxTokenLength)} | ${padText('Network', maxNetworkLength)} | ${padText('Value', maxMintedLength)} |`;
