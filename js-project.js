@@ -15,7 +15,7 @@ let mintedNFTs = [];
 // this function will take in some values as parameters, create an
 // NFT object using the parameters passed to it for its metadata, 
 // and store it in the variable above.
-function mintNFT(name, network="etherium", value=0, description=undefined) {
+function mintNFT(name, description='', network="etherium", value=0) {
     const availableNetwork = ["solana", "etherium", "bitcoin", "polygon"];
 
     const listedNetwork = {
@@ -53,7 +53,7 @@ function mintNFT(name, network="etherium", value=0, description=undefined) {
         const nftMetadata = {
             "unique": hashItem(name.toString()+getDateNow()),
             "name": name,
-            "description": description !== undefined ? description : '',
+            "description": description,
             "network": listedNetwork[network],
             "currency": listedToken[network],
             "value": parseFloat(value)
@@ -61,7 +61,7 @@ function mintNFT(name, network="etherium", value=0, description=undefined) {
 
         mintedNFTs.push(nftMetadata);
 
-        console.log(`You have successfully minted ${nftMetadata.network} with a value of ${nftMetadata.value} ${nftMetadata.token}.\n`);
+        console.log(`You have successfully minted ${nftMetadata.network} with a value of ${nftMetadata.value} ${nftMetadata.currency}.\n`);
     } else {
         console.log(`Token ${network} not listed in available tokens!\n`);
     }
@@ -96,8 +96,8 @@ function getTotalSupply() {
 }
 
 // call your functions below this line
-mintNFT("BAYC #10", "etherium", 0.25, "Bored Ape Society Collection")
-mintNFT("BAKC #1224")
+mintNFT("BAYC #10", "Bored Ape Society Collection", "BitcOin", 0.25)
+mintNFT("BAKC #1020")
 
 listNFTs()
 
